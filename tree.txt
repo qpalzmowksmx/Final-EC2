@@ -1,0 +1,39 @@
+tree-ls
+
+docker-compose.yml--0
+
+config/
+      /master-exporter.cnf
+      /master.cnf
+      /old-orche.json
+      /orchestrator.conf.json
+      /prometheus/
+      /proxysql.cnf
+      /slave1-exporter.cnf
+      /slave1.cnf
+data
+
+grafana
+
+init
+
+prometheus
+
+
+
+master_data_dump-2.sql
+master_data_dump.sql
+mysql-master-data
+mysql-slave1-data
+0228data.sql
+0310-2nd-data.sql
+0310data.sql
+
+
+########################################################################################################
+/data/mysql_master/
+[root@ip-100-100-21-56 mysql_master]# ls
+'#ib_16384_0.dblwr'   auto.cnf          client-key.pem   ibtmp1             mysql-bin.000003   mysql-bin.000007   mysql.ibd            private_key.pem   sys
+'#ib_16384_1.dblwr'   ca-key.pem        flight_data      mysql              mysql-bin.000004   mysql-bin.000008   mysql.sock           public_key.pem    undo_001
+'#innodb_redo'        ca.pem            ib_buffer_pool   mysql-bin.000001   mysql-bin.000005   mysql-bin.000009   orchestrator         server-cert.pem   undo_002
+'#innodb_temp'        client-cert.pem   ibdata1          mysql-bin.000002   mysql-bin.000006   mysql-bin.index    performance_schema   server-key.pem
