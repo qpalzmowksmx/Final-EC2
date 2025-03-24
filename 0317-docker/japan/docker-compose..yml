@@ -7,12 +7,12 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: AKJ1passwd
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: flight_data
       MYSQL_USER: flaskuser
-      MYSQL_PASSWORD: AKJ1passwd
+      MYSQL_PASSWORD: ${MYSQL_FLA_PASSWORD}
       MYSQL_REPLICATION_USER: repl_user
-      MYSQL_REPLICATION_PASSWORD: AKJ1passwd
+      MYSQL_REPLICATION_PASSWORD: ${MYSQL_REPL_PASSWORD}
     volumes:
       - /home/ec2-user/docker-files/master_data_dump-2.sql:/docker-entrypoint-initdb.d/master_data_dump-2.sql
       - /home/ec2-user/docker-files/config/slave.cnf:/etc/mysql/conf.d/slave.cnf
@@ -22,7 +22,7 @@ services:
       app_network:
         ipv4_address: 172.18.0.3
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pAKJ1passwd"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5

@@ -46,7 +46,7 @@ mysql_users =
 (
     {
         username = "flaskuser"
-        password = "AKJ1passwd"
+        password = "${MYSQL_ROOT_PASSWORD}"
         default_hostgroup = 0
         active = true
         use_ssl = false

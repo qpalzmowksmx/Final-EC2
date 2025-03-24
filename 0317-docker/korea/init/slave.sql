@@ -1,13 +1,13 @@
 -- 복제를 위한 사용자 생성
 CREATE USER 'repl_user'@'%' IDENTIFIED BY 'repl_password';
-GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'%';
+GRANT REPLICATION SLAVE ON *.* TO '${MYSQL_REPL_PASSWORD}'@'%';
 
 -- 모니터링을 위한 사용자 생성
 CREATE USER 'monitor_user'@'%' IDENTIFIED BY 'monitor_password';
 GRANT SELECT ON *.* TO 'monitor_user'@'%';
 
 -- Orchestrator 사용자 생성
-CREATE USER 'orchestrator_user'@'%' IDENTIFIED BY 'AKJ1passwd';
+CREATE USER 'orchestrator_user'@'%' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 GRANT SUPER, PROCESS, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'orchestrator_user'@'%';
 GRANT SELECT ON mysql.* TO 'orchestrator_user'@'%';
 GRANT ALL PRIVILEGES ON orchestrator.* TO 'orchestrator_user'@'%';
