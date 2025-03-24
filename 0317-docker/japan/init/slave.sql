@@ -1,5 +1,5 @@
 -- 사용자 생성 및 권한 부여
-CREATE USER 'repl_user'@'%' IDENTIFIED BY 'repl_password';
+CREATE USER 'repl_user'@'%' IDENTIFIED BY '${MYSQL_REPL_PASSWORD}';
 GRANT REPLICATION SLAVE ON *.* TO 'repl_user'@'%';
 
 CREATE USER 'monitor_user'@'%' IDENTIFIED BY 'monitor_password';
@@ -21,7 +21,7 @@ SET GLOBAL binlog_format = 'ROW';
 CHANGE MASTER TO
   MASTER_HOST='서울_마스터의_프라이빗_IP_주소',
   MASTER_USER='repl_user',
-  MASTER_PASSWORD='repl_password',
+  MASTER_PASSWORD='${MYSQL_REPL_PASSWORD}',
   MASTER_AUTO_POSITION=1;
 
 -- 복제 시작
