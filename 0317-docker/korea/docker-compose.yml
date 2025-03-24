@@ -7,12 +7,12 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: AKJ1passwd
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: flight_data
       MYSQL_USER: flaskuser
-      MYSQL_PASSWORD: AKJ1passwd
+      MYSQL_PASSWORD: ${MYSQL_FLA_PASSWORD}
       MYSQL_REPLICATION_USER: repl_user
-      MYSQL_REPLICATION_PASSWORD: AKJ1passwd
+      MYSQL_REPLICATION_PASSWORD: ${MYSQL_REPL_PASSWORD}
     volumes:
       - /home/ec2-user/docker-files/config/master.cnf:/etc/mysql/conf.d/master.cnf
       - /home/ec2-user/docker-files/data/mysql_master:/var/lib/mysql
@@ -23,7 +23,7 @@ services:
       app_network:
         ipv4_address: 172.18.0.2
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pAKJ1passwd"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -36,12 +36,12 @@ services:
     ports:
       - "3310:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: AKJ1passwd
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: flight_data
       MYSQL_USER: flaskuser
-      MYSQL_PASSWORD: AKJ1passwd
+      MYSQL_PASSWORD: ${MYSQL_FLASK_PASSWORD}
       MYSQL_REPLICATION_USER: repl_user
-      MYSQL_REPLICATION_PASSWORD: AKJ1passwd
+      MYSQL_REPLICATION_PASSWORD: ${MYSQL_REPL_PASSWORD}
       MYSQL_MASTER_HOST: mysql-master
       MYSQL_MASTER_PORT: 3306
     volumes:
@@ -218,7 +218,7 @@ services:
     restart: unless-stopped
     environment:
       - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=AKJ1passwd
+      - GF_SECURITY_ADMIN_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - "3000:3000"
     volumes:
